@@ -75,6 +75,14 @@ public class Window {
 
 
     public Window() {
+        POITable.setAutoCreateRowSorter(true);
+        POITable.setModel(new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
+
         //set default function to graph
         model = new GraphModel("x", new Pair<Double, Double>(-10.0, 10.0), new Pair<Double, Double>(-10.0, 10.0));
 
@@ -387,18 +395,6 @@ public class Window {
         return seriesList;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        //creates table backed by rowData and column name arrays
-        POITable = new JTable();
-        POITable.setAutoCreateRowSorter(true);
-        POITable.setModel(new DefaultTableModel(columnNames, 0) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        });
-    }
     private void updatePOTTable() {
         Map<Pair<Double, Double>, String> pointDescription = model.getPointDescription();
 

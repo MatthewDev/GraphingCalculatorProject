@@ -399,7 +399,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="d095d" class="javax.swing.JTable" binding="POITable" custom-create="true">
+                  <component id="d095d" class="javax.swing.JTable" binding="POITable">
                     <constraints/>
                     <properties>
                       <fillsViewportHeight value="true"/>
