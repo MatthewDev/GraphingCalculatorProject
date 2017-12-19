@@ -1,7 +1,5 @@
 package parse;
 
-import Structure.BiMap;
-
 import static parse.InfixToPostfix.isDouble;
 
 import java.util.HashMap;
@@ -19,7 +17,7 @@ public class EvaluatePostfix {
     private Token[] tokens;
 
     public EvaluatePostfix(String postfix) {
-        this(postfix, "", 0);
+        this(postfix, "x", 0);
     }
 
     public EvaluatePostfix(String postfix, String variable, double variableValue) {
@@ -117,71 +115,6 @@ public class EvaluatePostfix {
 
 
 
-    private void evaluate() {
-        //System.out.println(variableValue);
-        Stack<Double> numbers = new Stack<>();
-        String[] split = postfix.split(" ");
-
-
-        for(String s : split) {
-            //System.out.println(s+"#"+numbers.size());
-            if(isDouble(s) || s.equals(variable)) { //is number or variable
-                if(isDouble(s)) numbers.push(Double.parseDouble(s));
-                if(s.equals(variable)) numbers.push(variableValue); //replace variable with value
-            } else {
-                Operator operator = getOperator(s);
-                if(s.length() > 1) { //multicharacter operators are functions and only take one input
-                    double a = numbers.pop();
-                    double c = 0;
-
-                    switch (operator) {
-                        case NEG:
-                            c = -a;
-                            break;
-                        case SIN:
-                            c = Math.sin(a);
-                            break;
-                        case COS:
-                            c = Math.cos(a);
-                            break;
-                        case TAN:
-                            c = Math.tan(a);
-                            break;
-                        case LOG:
-                            c = Math.log10(a);
-                            break;
-                        case LN:
-                            c = Math.log(a);
-                            break;
-                    }
-                    numbers.push(c);
-                } else { //normal operator
-                    double b = numbers.pop();
-                    double a = numbers.pop();
-                    double c = 0;
-                    switch (operator) {
-                        case MULTIPLY:
-                            c = a * b;
-                            break;
-                        case DIVIDE:
-                            c = a / b;
-                            break;
-                        case ADD:
-                            c = a + b;
-                            break;
-                        case SUBTRACT:
-                            c = a - b;
-                            break;
-                        case EXPONENT:
-                            c = Math.pow(a, b);
-                            break;
-                    }
-                    numbers.push(c);
-                }
-            }
-        }
-        value = numbers.pop();
-    }
     public double evalVar(double variableValue) {
         this.variableValue = variableValue;
         fastEvaluate();

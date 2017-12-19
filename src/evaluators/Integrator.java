@@ -77,7 +77,6 @@ public class Integrator implements Evaluator{
 
         trapezoidIntegral += fx.eval(start)/2;
         double i;
-        double error = 0;
         for(i = start+dx; i < x-dx; i += dx) {
             //double y = fx.eval(i) - error;
             //double curIntegral = integral + y;
