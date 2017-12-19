@@ -52,7 +52,7 @@ public class POIFinder {
     }
 
     private static double fuzzySignum(double a) {
-        final double fuzzyFactor = 1E-7;
+        final double fuzzyFactor = 1E-4;
         if(Math.abs(a) < fuzzyFactor) return 0;
         return Math.signum(a);
     }

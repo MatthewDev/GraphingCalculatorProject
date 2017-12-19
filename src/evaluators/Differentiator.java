@@ -19,7 +19,7 @@ public class Differentiator implements Evaluator {
 
     @Override
     public double eval(double x) {
-        return evalSymmDifferenceQuotient(x, DEFAULT_DX);
+        return eval5pt(x, DEFAULT_DX);
     }
 
     private double evalSymmDifferenceQuotient(double x, double stepSize) {
