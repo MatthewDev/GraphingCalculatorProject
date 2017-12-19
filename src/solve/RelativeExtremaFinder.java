@@ -30,9 +30,13 @@ public class RelativeExtremaFinder {
 
         double limitLeft = fx.eval(x-h);
         double limitRight = fx.eval(x+h);
+        //System.out.println(x+" "+y+" "+limitLeft+" "+limitRight);
 
         //if f(x) makes a more than reasonable movement in a 2h interval then it is probably not continuous and thus is not a relative extrema
         if(Math.abs(limitLeft-limitRight) > REASONABLE_MOVEMENT) return RelativeExtrema.NEITHER;
+
+        //if the limit is infinite is can't be a relative extrema
+        if(!DoubleUtil.isBasicallyFinite(y) || !DoubleUtil.isBasicallyFinite(limitLeft) || !DoubleUtil.isBasicallyFinite(limitRight)) return RelativeExtrema.NEITHER;
 
         if(limitLeft > y && limitRight > y) return RelativeExtrema.MIN;
         if(limitLeft < y && limitRight < y) return RelativeExtrema.MAX;
