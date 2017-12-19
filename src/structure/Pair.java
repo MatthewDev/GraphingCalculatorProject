@@ -1,4 +1,4 @@
-package Structure;
+package structure;
 
 import java.text.DecimalFormat;
 

@@ -1,6 +1,6 @@
 package view.scale;
 
-import Structure.RangeSum;
+import structure.RangeSum;
 
 import java.util.Arrays;
 import java.util.Map;

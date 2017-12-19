@@ -1,9 +1,4 @@
-package Structure.AbstractSyntaxTree;
-
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
-import java.util.Arrays;
-import java.util.Objects;
+package structure.abstractsyntaxtree;
 
 /**
  * Created by Matthew on 12/1/2017.

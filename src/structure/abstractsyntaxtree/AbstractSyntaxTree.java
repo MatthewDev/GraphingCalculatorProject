@@ -1,6 +1,5 @@
-package Structure.AbstractSyntaxTree;
+package structure.abstractsyntaxtree;
 
-import Structure.Pair;
 import parse.InfixToPostfix;
 
 import java.util.*;

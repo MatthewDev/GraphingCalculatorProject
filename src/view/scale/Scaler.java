@@ -1,6 +1,6 @@
 package view.scale;
 
-import Structure.Pair;
+import structure.Pair;
 
 import java.util.Map;
 

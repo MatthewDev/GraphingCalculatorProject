@@ -1,17 +1,11 @@
 package solve;
 
-import Structure.Pair;
-import Structure.PointType.Discontinuity;
-import Structure.PointType.RelativeExtrema;
+import structure.Pair;
 import evaluators.Differentiator;
 import evaluators.Evaluator;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-
-import static solve.DoubleUtil.reasonableError;
 
 /**
  * Created by Matthew on 12/18/2017.

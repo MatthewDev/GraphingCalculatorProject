@@ -1,4 +1,4 @@
-package Structure.AbstractSyntaxTree;
+package structure.abstractsyntaxtree;
 
 import java.util.stream.IntStream;
 

@@ -1,16 +1,11 @@
 package view;
 
-import Structure.Pair;
+import structure.Pair;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.Range;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 /**
  * Created by Matthew on 9/29/2017.

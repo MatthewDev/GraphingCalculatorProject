@@ -1,7 +1,7 @@
 package solve;
 
-import Structure.Pair;
-import Structure.PointType.RelativeExtrema;
+import structure.Pair;
+import structure.pointtypes.RelativeExtrema;
 import evaluators.Differentiator;
 import evaluators.Evaluator;
 

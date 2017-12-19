@@ -1,4 +1,4 @@
-package Structure.PointType;
+package structure.pointtypes;
 
 /**
  * Created by Matthew on 12/12/2017.

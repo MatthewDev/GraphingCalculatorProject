@@ -1,18 +1,23 @@
-package Structure.AbstractSyntaxTree;
+package structure.abstractsyntaxtree;
 
 /**
  * Created by Matthew on 12/1/2017.
  */
-public class ConstantNode implements Node{
-    private double constant;
+public class VariableNode implements Node {
+    private double value;
 
-    public ConstantNode(double constant) {
-        this.constant = constant;
+
+    public VariableNode() {
+
+    }
+
+    public void setVariable(double value){
+        this.value = value;
     }
 
     @Override
     public double eval() {
-        return constant;
+        return value;
     }
 
     @Override
@@ -27,7 +32,6 @@ public class ConstantNode implements Node{
 
     @Override
     public boolean isConstant() {
-        return true;
+        return false;
     }
-
 }

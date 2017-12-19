@@ -1,6 +1,6 @@
 package solve;
 
-import Structure.ComparablePair;
+import structure.ComparablePair;
 import evaluators.Differentiator;
 import evaluators.Evaluator;
 import evaluators.ExpressionEvaluator;
@@ -12,7 +12,6 @@ import java.util.TreeMap;
 
 import static solve.DoubleUtil.fuzzyEqual;
 import static solve.DoubleUtil.isEqual;
-import static solve.DoubleUtil.compare;
 
 /**
  * Created by Matthew on 11/6/2017.

@@ -1,4 +1,4 @@
-package Structure;
+package structure;
 
 /**
  * Created by Matthew on 10/16/2017.

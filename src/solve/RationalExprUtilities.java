@@ -1,18 +1,15 @@
 package solve;
 
-import Structure.AbstractSyntaxTree.AbstractSyntaxTree;
-import Structure.AbstractSyntaxTree.Node;
-import Structure.AbstractSyntaxTree.Operator;
-import Structure.Pair;
-import Structure.PointType.Discontinuity;
-import Structure.PointType.RelativeExtrema;
+import structure.abstractsyntaxtree.AbstractSyntaxTree;
+import structure.abstractsyntaxtree.Node;
+import structure.abstractsyntaxtree.Operator;
+import structure.Pair;
+import structure.pointtypes.Discontinuity;
 import evaluators.ASTEvaluator;
 import evaluators.Evaluator;
 
 import java.util.*;
 
-import static solve.CrossValue.EPSILON;
-import static solve.DoubleUtil.maxUlp;
 import static solve.DoubleUtil.reasonableError;
 
 

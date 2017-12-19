@@ -1,7 +1,7 @@
 package view.scale;
 
-import Structure.ComparablePair;
-import Structure.RangeSum;
+import structure.ComparablePair;
+import structure.RangeSum;
 
 import java.util.Arrays;
 

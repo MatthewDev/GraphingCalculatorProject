@@ -1,7 +1,7 @@
 package model;
 
-import Structure.AbstractSyntaxTree.AbstractSyntaxTree;
-import Structure.Pair;
+import structure.abstractsyntaxtree.AbstractSyntaxTree;
+import structure.Pair;
 import evaluators.*;
 import org.jfree.data.xy.XYSeries;
 

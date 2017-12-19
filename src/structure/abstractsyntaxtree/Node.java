@@ -1,4 +1,4 @@
-package Structure.AbstractSyntaxTree;
+package structure.abstractsyntaxtree;
 
 /**
  * Created by Matthew on 12/1/2017.

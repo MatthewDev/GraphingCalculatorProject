@@ -1,13 +1,12 @@
 package model;
 
-import Structure.AbstractSyntaxTree.AbstractSyntaxTree;
-import Structure.Pair;
-import Structure.PointType.Discontinuity;
-import Structure.PointType.RelativeExtrema;
+import structure.abstractsyntaxtree.AbstractSyntaxTree;
+import structure.Pair;
+import structure.pointtypes.Discontinuity;
+import structure.pointtypes.RelativeExtrema;
 import evaluators.ASTEvaluator;
 import evaluators.Differentiator;
 import evaluators.Evaluator;
-import evaluators.ExpressionEvaluator;
 import org.jfree.data.xy.XYSeries;
 import solve.POIFinder;
 import solve.RationalExprUtilities;

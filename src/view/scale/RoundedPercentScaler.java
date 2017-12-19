@@ -1,9 +1,7 @@
 package view.scale;
 
-import Structure.Pair;
+import structure.Pair;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Map;
 
 /**

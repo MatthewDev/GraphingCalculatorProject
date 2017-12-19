@@ -1,7 +1,6 @@
 package evaluators;
 
-import Structure.AbstractSyntaxTree.AbstractSyntaxTree;
-import parse.EvaluatePostfix;
+import structure.abstractsyntaxtree.AbstractSyntaxTree;
 
 import java.util.TreeMap;
 
