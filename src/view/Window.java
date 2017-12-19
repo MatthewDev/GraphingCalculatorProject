@@ -158,7 +158,7 @@ public class Window {
     }
 
 
-    public void drawGraph() {
+    private void drawGraph() {
         JFreeChart chart = createChart(model.getFxOutput());
 
         functionContainer.removeAll();
@@ -171,15 +171,11 @@ public class Window {
 
         //unnecessary see jdoc
         //colorFunctions();
-
-
-        container.revalidate();
-        container.repaint();
     }
 
     static final int FX_DATASET_INDEX = 0, F1X_DATASET_INDEX = 1, F2X_DATASET_INDEX = 2, FTC_DATASET_INDEX = 3;
     static final Color FX_COLOR = Color.RED, FTC_COLOR = Color.BLUE, F1X_COLOR = Color.BLUE, F2X_COLOR = Color.GREEN;
-    public void updateFTCVisual() {
+    private void updateFTCVisual() {
         XYSeriesCollection dataset = new XYSeriesCollection(model.getFTCArea());
 
 
@@ -187,12 +183,9 @@ public class Window {
 
         functionPanel.getChart().getXYPlot().setRenderer(FTC_DATASET_INDEX, new XYAreaRenderer());
         functionPanel.getChart().getXYPlot().getRenderer(FTC_DATASET_INDEX).setSeriesPaint(0, FTC_COLOR);
-
-
-        container.revalidate();
-        container.repaint();
     }
-    public void drawf1x() {
+
+    private void drawf1x() {
         XYSeriesCollection dataset = new XYSeriesCollection(model.getF1xOutput());
 
         functionPanel.getChart().getXYPlot().setDataset(F1X_DATASET_INDEX, dataset);
@@ -201,11 +194,9 @@ public class Window {
         renderer.setSeriesPaint(0, F1X_COLOR);
         renderer.setBaseShapesVisible(false);
         functionPanel.getChart().getXYPlot().setRenderer(F1X_DATASET_INDEX, renderer);
-
-        container.revalidate();
-        container.repaint();
     }
-    public void drawf2x() {
+
+    private void drawf2x() {
         XYSeriesCollection dataset = new XYSeriesCollection(model.getF2xOutput());
 
         functionPanel.getChart().getXYPlot().setDataset(F2X_DATASET_INDEX, dataset);
@@ -214,9 +205,6 @@ public class Window {
         renderer.setSeriesPaint(0, F2X_COLOR);
         renderer.setBaseShapesVisible(false);
         functionPanel.getChart().getXYPlot().setRenderer(F2X_DATASET_INDEX, renderer);
-
-        container.revalidate();
-        container.repaint();
     }
 
 
@@ -242,7 +230,7 @@ public class Window {
 
     }
 
-    public void updateFields() {
+    private void updateFields() {
         expression.setText(model.getExpression());
 
         domainLower.setText(coordinateFormat.format(model.getDomain().a));
@@ -261,9 +249,6 @@ public class Window {
         double b = model.getAB().b;
         aField.setText(coordinateFormat.format(a));
         bField.setText(coordinateFormat.format(b));
-
-        container.revalidate();
-        container.repaint();
     }
 
     /**
@@ -321,8 +306,8 @@ public class Window {
         updateFTCVisual();
         updateFTCText();
 
+        container.revalidate();
         container.repaint();
-
     }
 
     public static void main(String[] args) {
