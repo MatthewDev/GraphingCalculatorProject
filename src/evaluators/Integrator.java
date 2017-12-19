@@ -56,19 +56,10 @@ public class Integrator implements Evaluator{
     private TreeMap<Double, Double> cachedValues = new TreeMap<>();
     @Override
     public double eval(double x) {
-        return fasterEval(x);
-        /*if(cachedValues.containsKey(x)) return cachedValues.get(x);
+        return simpsons(x);
 
-        double integral = 0;
-        cachedValues.put(start, integral);
-
-        for(double i = start; i < x; i += dx) {
-            integral += trapezoidSum(i, i+ dx);
-            cachedValues.put(i+ dx, integral);
-        }
-        return integral;*/
     }
-    public double fasterEval(double x) {
+    public double simpsons(double x) {
         //don't manually compute the integral if it is from a to a
         if(start==x) return 0;
 
@@ -78,13 +69,9 @@ public class Integrator implements Evaluator{
         trapezoidIntegral += fx.eval(start)/2;
         double i;
         for(i = start+dx; i < x-dx; i += dx) {
-            //double y = fx.eval(i) - error;
-            //double curIntegral = integral + y;
-            //error = (curIntegral-integral)-y;
             trapezoidIntegral += fx.eval(i);
 
-            double y2 = fx.eval(i-(dx/2));
-            midpointIntegral += y2;
+            midpointIntegral += fx.eval(i-(dx/2));
         }
         trapezoidIntegral += fx.eval(i)/2;
         trapezoidIntegral *= dx;
@@ -97,6 +84,7 @@ public class Integrator implements Evaluator{
     }
 
     /**
+     * unused but implements interface
      *
      * @param start first x value evaluated
      * @param end last x value evaluated

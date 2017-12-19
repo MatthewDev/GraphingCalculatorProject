@@ -211,17 +211,18 @@ public class Window {
         double fb = model.evalfx(b);
         double fbfa = fb-fa;
 
+        //get integral from a to b of f'(x)
         double integral = model.integraldfx();
 
         String fbfaLatex = fafbLatexBase+coordinateFormat.format(fb)+" - "+coordinateFormat.format(fa)+" = "+coordinateFormat.format(fbfa);
         String integralLatex = integralLatexBase+coordinateFormat.format(integral);
 
+        //update display
         fbfaContainer.removeAll();
         integralContainer.removeAll();
 
         fbfaContainer.add(buildLatexLabel(fbfaLatex));
         integralContainer.add(buildLatexLabel(integralLatex));
-
     }
 
     private void updateFields() {
