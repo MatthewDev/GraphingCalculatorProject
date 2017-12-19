@@ -13,39 +13,27 @@ import java.awt.*;
 public class FunctionPanel extends ChartPanel {
     private Pair<Double, Double> range;
 
-
     public FunctionPanel(JFreeChart chart) {
         this(chart, new Pair<>(-10d, 10d));
     }
-
 
     public FunctionPanel(JFreeChart chart, Pair<Double, Double> range) {
         super(chart);
         this.range = range;
         restoreAutoRangeBounds();
 
-        //chart.removeLegend();
         chart.getXYPlot().getRenderer().setSeriesPaint(0, Color.BLACK);
-
-        //colorFunctions();
-        chart.getXYPlot().getRenderer().setSeriesPaint(0, Color.BLACK);
-
 
         LegendItemCollection chartLegend = new LegendItemCollection();
-        Shape shape = new Rectangle(10, 10);
         chartLegend.add(new LegendItem("f(x)", Window.FX_COLOR));
         chartLegend.add(new LegendItem("f'(x)", Window.F1X_COLOR));
         chartLegend.add(new LegendItem("f''(x)", Window.F2X_COLOR));
-
 
         chartLegend.add(new LegendItem("Relative Minimum", null, null, null, GraphRenderer.MIN_SHAPE, Window.FX_COLOR));
         chartLegend.add(new LegendItem("Relative Maximum", null, null, null, GraphRenderer.MAX_SHAPE, Window.FX_COLOR));
         chartLegend.add(new LegendItem("Point of Inflection", null, null, null, GraphRenderer.POI_SHAPE, Window.FX_COLOR));
 
-
         chartLegend.add(new LegendItem("Hole", null, null, null, GraphRenderer.HOLE_SHAPE, GraphRenderer.HOLE_FILL_COLOR, chart.getXYPlot().getRenderer().getBaseStroke(), Window.FX_COLOR));
-
-
 
 
         chart.getXYPlot().setFixedLegendItems(chartLegend);

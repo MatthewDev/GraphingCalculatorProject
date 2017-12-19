@@ -31,7 +31,6 @@ public class GraphModel {
     private boolean showHoles, showExtrema, showPOI;
     private boolean showf1x, showf2x;
 
-
     //internal state
     private AutoRange autoRange = new AutoRange(1.0d);
     private AbstractSyntaxTree ast;
@@ -53,7 +52,6 @@ public class GraphModel {
         this.variableName = variableName;
         this.ftcModel = new FTCModel(expression, variableName, new Pair<Double, Double>(0d,0d));
 
-
         setDomain(domain);
         setExpression(expression);
         setRange(range);
@@ -72,7 +70,6 @@ public class GraphModel {
 
     public Map<ComparablePair<Double, Double>, PointLabel> getPointDescription() {
         pointDescription = new TreeMap<>();
-
 
         if(showHoles) {
             Map<Double, Discontinuity> discontinuityMap =  RationalExprUtilities.discontinuities(ast, domain.a, domain.b);
@@ -100,7 +97,6 @@ public class GraphModel {
                 fxOutput.addOrUpdate(x, y);
                 pointDescription.put(point, label);
             }
-            //System.out.println(expression+" extrema "+relativeExtremaMap);
         }
         if(showPOI) {
             Set<ComparablePair<Double, Double>> POImap =  POIFinder.find(fx, domain);
@@ -276,9 +272,6 @@ public class GraphModel {
         ast = new AbstractSyntaxTree(expression, variableName);
         fx = new ASTEvaluator(ast);
 
-        //System.out.println(expression);
-        //System.out.println(fx.eval(10));
-
         fxOutput = new XYSeries("f(x)", true, false);
 
         Map<Double, Double> functionTable = fx.eval(domain.a, domain.b);
@@ -301,7 +294,6 @@ public class GraphModel {
             Double y = point.getValue();
             if(y != null && !Double.isFinite(y)) continue; //don't insert NaN because jfree sucks and it gets really slow for whatever reason
             fxOutput.add(x, y);
-            //System.out.println(x+" "+y);
         }
     }
 

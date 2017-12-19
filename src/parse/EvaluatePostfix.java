@@ -38,7 +38,6 @@ public class EvaluatePostfix {
 
 
         for(int i = 0; i < split.length; i++) {
-            //System.out.println(s+"#"+numbers.size());
             String s = split[i];
             if(isDouble(s) || s.equals(variable)) { //is number or variable
                 if(isDouble(s)) tokens[i] = new Token(Double.parseDouble(s));
@@ -51,7 +50,6 @@ public class EvaluatePostfix {
     private void fastEvaluate() {
         //3x faster with fast isDouble and 20x faster with slow isDouble
         Stack<Double> numbers = new Stack<>();
-
 
         for(Token token : tokens) {
             //System.out.println(token);
@@ -114,11 +112,9 @@ public class EvaluatePostfix {
     }
 
 
-
     public double evalVar(double variableValue) {
         this.variableValue = variableValue;
         fastEvaluate();
-        //evaluators();
 
         return value;
     }

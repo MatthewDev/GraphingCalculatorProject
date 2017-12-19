@@ -1,29 +1,25 @@
 package view;
 
-import structure.ComparablePair;
-import structure.Pair;
 import controller.*;
 import model.GraphModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYAreaRenderer;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
+import structure.ComparablePair;
+import structure.Pair;
 import structure.pointtypes.PointLabel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.*;
-import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Matthew on 12/13/2017.

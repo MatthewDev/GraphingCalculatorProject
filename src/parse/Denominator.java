@@ -37,7 +37,6 @@ public class Denominator {
 
 
         for(int i = 0; i < split.length; i++) {
-            //System.out.println(s+"#"+numbers.size());
             String s = split[i];
             if(isDouble(s) || s.equals(variable)) { //is number or variable
                 if(isDouble(s)) tokens[i] = new Token(s);
@@ -48,15 +47,11 @@ public class Denominator {
         }
     }
     private void fastEvaluate() { //~5000ns vs 20,000ns for 1/x^2
-        //System.out.println(variableValue);
         Stack<String> expressions = new Stack<>();
         ArrayList<String> demoninators = new ArrayList<String>();
 
 
-        //System.out.println(postfix);
         for(Token token : tokens) {
-            //System.out.println(token);
-            //System.out.println(s+"#"+numbers.size());
             if(token.isVar || token.isNum()) { //is number or variable
                 if(token.isNum()) expressions.push(""+token.num);
                 if(token.isVar) expressions.push(variable);
@@ -65,7 +60,6 @@ public class Denominator {
                     String a = expressions.pop();
 
                     switch (token.operator) {
-
                         case NEG:
                             a += " neg";
                             break;
@@ -105,7 +99,7 @@ public class Denominator {
                             c += " -";
                             break;
                         case EXPONENT:
-                            //demoninators.add(a); //b is expression :| so sign = idfk
+                            //demoninators.add(a); //b is expression :| so sign = idk
                             c += " ^";
                             break;
                     }
@@ -113,7 +107,6 @@ public class Denominator {
                 }
             }
         }
-        //System.out.println(demoninators);
     }
 
 

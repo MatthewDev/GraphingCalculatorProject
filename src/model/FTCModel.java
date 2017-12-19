@@ -62,9 +62,6 @@ class FTCModel {
         Evaluator fx = new ASTEvaluator(ast);
         ddxfx = new Differentiator(fx);
 
-        //System.out.println(expression);
-        //System.out.println(fx.eval(10));
-
         derivativeOutput = new XYSeries("f'(x)");
 
         Map<Double, Double> functionTable = ddxfx.eval(ab.a, ab.b);

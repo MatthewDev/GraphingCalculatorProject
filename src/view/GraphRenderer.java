@@ -35,8 +35,6 @@ public class GraphRenderer extends XYLineAndShapeRenderer{
         //this.setBaseItemLabelsVisible(true);
     }
 
-
-
     private Map<ComparablePair<Double, Double>, PointLabel> specialPoints = new HashMap<>();
 
     public void addSpecialPoint(double x, double y, PointLabel label) {
@@ -131,9 +129,6 @@ public class GraphRenderer extends XYLineAndShapeRenderer{
         }
         return normalPaint;
     }
-
-
-
 
 
 

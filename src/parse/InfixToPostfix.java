@@ -40,15 +40,9 @@ public class InfixToPostfix {
 
 
 
-    public static boolean isDouble(String s){ //kinda bad practice
+    public static boolean isDouble(String s){
         return s != null && isNumber.matcher(s).matches();
 
-        /*try{
-            Double.parseDouble(s);
-            return true;
-        }catch (Exception e){
-            return false;
-        }*/
     }
 
     public InfixToPostfix(String infix){
@@ -81,7 +75,6 @@ public class InfixToPostfix {
         }
         match.deleteCharAt(match.length()-1);
         String matchString = match.toString();
-        //System.out.println(matchString);
         String regex = "(?<="+matchString+")|(?="+matchString+")";
         String[] split = expression.split(regex); //regex splits before and after any number
         return split;
@@ -92,8 +85,6 @@ public class InfixToPostfix {
         Stack<String> operatorStack = new Stack<>();
         StringBuilder sb = new StringBuilder();
         String[] split = splitOperators(infix);
-        //String[] split = infix.split("((?<=[0-9])(?=[^0-9]))|((?=[0-9])(?<=[^0-9]))"); //regex splits before and after any number
-        //System.out.println(Arrays.toString(split));
         boolean numberAhead = true; //flag for whether or not the next token should be a number
         //numberAhead is used to check if - means unary negative or subtraction
         for(String s : split) {
@@ -130,7 +121,6 @@ public class InfixToPostfix {
                 continue;
             }
 
-            //System.out.println(curOperator+" "+operatorStack.peek());
             if(isHigher(curOperator, operatorStack.peek())) {
                 operatorStack.push(curOperator);
                 continue;
@@ -162,12 +152,6 @@ public class InfixToPostfix {
 
     public String getPostfix(){
         return postfix;
-    }
-    static void dump(String[] arr) {
-        for (String s : arr) {
-            System.out.format("[%s]", s);
-        }
-        System.out.println();
     }
 
 
