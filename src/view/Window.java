@@ -152,7 +152,6 @@ public class Window {
 
     private JFreeChart createChart(XYSeries series) {
         XYSeriesCollection dataset = new XYSeriesCollection(series);
-        //fixDiscontinuities(dataset);
 
         JFreeChart chart = ChartFactory.createXYLineChart(null, null, null, dataset);
 
@@ -170,9 +169,6 @@ public class Window {
 
         graphRenderer = new GraphRenderer(functionPanel);
         functionPanel.getChart().getXYPlot().setRenderer(graphRenderer);
-
-        //unnecessary see jdoc
-        //colorFunctions();
     }
 
     static final int FX_DATASET_INDEX = 0, F1X_DATASET_INDEX = 1, F2X_DATASET_INDEX = 2, FTC_DATASET_INDEX = 3;
@@ -253,36 +249,6 @@ public class Window {
         bField.setText(coordinateFormat.format(b));
     }
 
-    /**
-     * only necessary if dataset contains multiple series, which only occurs when fixDiscontinuities is used, which is only necessary when XYSPlineRenderer is used
-     * (which it is not currently used)
-     */
-    private void colorFunctions() {
-        final Color[] color = {Color.RED, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.YELLOW};
-
-        XYPlot plot = functionPanel.getChart().getXYPlot();
-        XYSeriesCollection dataset = (XYSeriesCollection) plot.getDataset();
-        XYItemRenderer renderer = plot.getRenderer();
-
-        Map<String, Color> functionToColor = new HashMap<>();
-        Map<Comparable, String> keyToFunction = new HashMap<>();
-
-        int curColor = 0;
-        List<XYSeries> seriesList = dataset.getSeries();
-        for(XYSeries series : seriesList) {
-            String function = series.getDescription();
-            if(!functionToColor.containsKey(function)) {
-                functionToColor.put(function, color[curColor]);
-                curColor = (curColor + 1) % color.length;
-            }
-            keyToFunction.put(series.getKey(), function);
-        }
-
-        for(Comparable key : keyToFunction.keySet()) {
-            Color lineColor = functionToColor.get(keyToFunction.get(key));
-            renderer.setSeriesPaint(dataset.getSeriesIndex(key), lineColor);
-        }
-    }
 
     private void addPOI() {
         Map<ComparablePair<Double, Double>, PointLabel> pointDescription = model.getPointDescription();
@@ -316,7 +282,7 @@ public class Window {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        JFrame frame = new JFrame("Window");
+        JFrame frame = new JFrame("Graphing Calculator");
         frame.setContentPane(new Window().container);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -324,64 +290,11 @@ public class Window {
     }
 
 
-    /**
-     * only necessary for XYSplineRenderer
-     */
-    @Deprecated
-    private void fixDiscontinuities(XYSeriesCollection dataset){
-        List<XYSeries> seriesList = dataset.getSeries();
-        List<XYSeries> splitSeriesList = new LinkedList<>();
-
-        for(XYSeries series : seriesList) {
-            splitSeriesList.addAll(splitSeries(series));
-        }
-
-        dataset.removeAllSeries();
-
-        for(XYSeries series : splitSeriesList) {
-            dataset.addSeries(series);
-        }
-    }
 
 
-
-    /**
-     * split series at all discontinuities (when y value is not finite)
-     * @param series
-     * @return
-     */
-    private List<XYSeries> splitSeries(XYSeries series) {
-        List<XYSeries> seriesList = new LinkedList<>();
-        List<XYDataItem> xyDataItems = series.getItems();
-
-        int i = 0;
-        String name = series.getKey().toString();
-
-        XYSeries currentSeries = new XYSeries(name+i++);
-        currentSeries.setDescription(name);
-
-        for(XYDataItem dataItem : xyDataItems) {
-            if(!Double.isFinite(dataItem.getYValue())) {
-                seriesList.add(currentSeries);
-
-                currentSeries = new XYSeries(name+i++);
-                currentSeries.setDescription(name);
-            } else {
-                currentSeries.add(dataItem);
-            }
-        }
-
-        if(!currentSeries.isEmpty()) {
-            seriesList.add(currentSeries);
-        }
-
-        //System.out.println(currentSeries.getItems());
-        //System.out.println(seriesList);
-        return seriesList;
-    }
 
     private void updatePOTTable() {
-        Map<ComparablePair<Double, Double>, PointLabel> pointDescription = model.getPointDescription();
+        Map<ComparablePair  <Double, Double>, PointLabel> pointDescription = model.getPointDescription();
 
 
 
