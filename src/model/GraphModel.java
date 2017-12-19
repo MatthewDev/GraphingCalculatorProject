@@ -1,8 +1,10 @@
 package model;
 
+import structure.ComparablePair;
 import structure.abstractsyntaxtree.AbstractSyntaxTree;
 import structure.Pair;
 import structure.pointtypes.Discontinuity;
+import structure.pointtypes.PointLabel;
 import structure.pointtypes.RelativeExtrema;
 import evaluators.ASTEvaluator;
 import evaluators.Differentiator;
@@ -17,6 +19,7 @@ import view.scale.RoundedPercentScaler;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Created by Matthew on 12/14/2017.
@@ -36,7 +39,7 @@ public class GraphModel {
     private Evaluator f1x;
     private Evaluator f2x;
 
-    private Map<Pair<Double, Double>, String> pointDescription = new HashMap<>();
+    private Map<ComparablePair<Double, Double>, PointLabel> pointDescription = new HashMap<>();
 
     private FTCModel ftcModel;
 
@@ -67,8 +70,9 @@ public class GraphModel {
     }
 
 
-    public Map<Pair<Double, Double>, String> getPointDescription() {
-        pointDescription = new HashMap<>();
+    public Map<ComparablePair<Double, Double>, PointLabel> getPointDescription() {
+        pointDescription = new TreeMap<>();
+
 
         if(showHoles) {
             Map<Double, Discontinuity> discontinuityMap =  RationalExprUtilities.discontinuities(ast, domain.a, domain.b);
@@ -76,8 +80,10 @@ public class GraphModel {
                 Discontinuity discontinuity = discontinuityMap.get(x);
                 if(discontinuity == Discontinuity.Hole) {
                     double y = RationalExprUtilities.holeEval(fx, x);
+                    ComparablePair<Double, Double> point = new ComparablePair<>(x, y);
+
                     fxOutput.addOrUpdate(x, y);
-                    appendPointDescription(new Pair<>(x, y), discontinuity.toString());
+                    pointDescription.put(point, PointLabel.HOLE);
                 }
             }
         }
@@ -86,16 +92,21 @@ public class GraphModel {
             for(double x : relativeExtremaMap.keySet()) {
                 RelativeExtrema extrema = relativeExtremaMap.get(x);
                 double y = fx.eval(x);
+                ComparablePair<Double, Double> point = new ComparablePair<>(x, y);
+
+                if(extrema == RelativeExtrema.NEITHER) continue;
+                PointLabel label = (extrema == RelativeExtrema.MAX ? PointLabel.MAX : PointLabel.MIN);
+
                 fxOutput.addOrUpdate(x, y);
-                appendPointDescription(new Pair<>(x, y), extrema.toString());
+                pointDescription.put(point, label);
             }
             //System.out.println(expression+" extrema "+relativeExtremaMap);
         }
         if(showPOI) {
-            Set<Pair<Double, Double>> POImap =  POIFinder.find(fx, domain);
-            for(Pair<Double, Double> point : POImap) {
+            Set<ComparablePair<Double, Double>> POImap =  POIFinder.find(fx, domain);
+            for(ComparablePair<Double, Double> point : POImap) {
                 fxOutput.addOrUpdate(point.a, point.b);
-                appendPointDescription(point, "point of inflection");
+                pointDescription.put(point, PointLabel.POI);
             }
 
         }
@@ -103,17 +114,6 @@ public class GraphModel {
         return pointDescription;
     }
 
-    private void appendPointDescription(Pair<Double, Double> point, String description) {
-        if(!pointDescription.containsKey(point)) {
-            pointDescription.put(point, description);
-        } else {
-            StringBuilder descriptionBuilder = new StringBuilder(pointDescription.get(point));
-            descriptionBuilder.append(", ");
-            descriptionBuilder.append(description);
-
-            pointDescription.put(point, descriptionBuilder.toString());
-        }
-    }
 
     public boolean showHoles() {
         return showHoles;

@@ -33,9 +33,21 @@ public class FunctionPanel extends ChartPanel {
 
         LegendItemCollection chartLegend = new LegendItemCollection();
         Shape shape = new Rectangle(10, 10);
-        chartLegend.add(new LegendItem("f(x)", null, null, null, shape, Window.FX_COLOR));
-        chartLegend.add(new LegendItem("f'(x)", null, null, null, shape, Window.F1X_COLOR));
-        chartLegend.add(new LegendItem("f''(x)", null, null, null, shape, Window.F2X_COLOR));
+        chartLegend.add(new LegendItem("f(x)", Window.FX_COLOR));
+        chartLegend.add(new LegendItem("f'(x)", Window.F1X_COLOR));
+        chartLegend.add(new LegendItem("f''(x)", Window.F2X_COLOR));
+
+
+        chartLegend.add(new LegendItem("Relative Minimum", null, null, null, GraphRenderer.MIN_SHAPE, Window.FX_COLOR));
+        chartLegend.add(new LegendItem("Relative Maximum", null, null, null, GraphRenderer.MAX_SHAPE, Window.FX_COLOR));
+        chartLegend.add(new LegendItem("Point of Inflection", null, null, null, GraphRenderer.POI_SHAPE, Window.FX_COLOR));
+
+
+        chartLegend.add(new LegendItem("Hole", null, null, null, GraphRenderer.HOLE_SHAPE, GraphRenderer.HOLE_FILL_COLOR, chart.getXYPlot().getRenderer().getBaseStroke(), Window.FX_COLOR));
+
+
+
+
         chart.getXYPlot().setFixedLegendItems(chartLegend);
 
         restoreAutoBounds();

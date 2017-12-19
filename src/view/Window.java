@@ -1,5 +1,6 @@
 package view;
 
+import structure.ComparablePair;
 import structure.Pair;
 import controller.*;
 import model.GraphModel;
@@ -15,6 +16,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
+import structure.pointtypes.PointLabel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -283,12 +285,10 @@ public class Window {
     }
 
     private void addPOI() {
-        Map<Pair<Double, Double>, String> pointDescription = model.getPointDescription();
+        Map<ComparablePair<Double, Double>, PointLabel> pointDescription = model.getPointDescription();
 
-        for(Pair<Double, Double> point : pointDescription.keySet()) {
-            final String description = pointDescription.get(point);
-
-            graphRenderer.addLabel(point.a, point.b, description);
+        for(ComparablePair<Double, Double> point : pointDescription.keySet()) {
+            graphRenderer.addSpecialPoint(point.a, point.b, pointDescription.get(point));
         }
 
     }
@@ -381,7 +381,7 @@ public class Window {
     }
 
     private void updatePOTTable() {
-        Map<Pair<Double, Double>, String> pointDescription = model.getPointDescription();
+        Map<ComparablePair<Double, Double>, PointLabel> pointDescription = model.getPointDescription();
 
 
 
@@ -392,9 +392,9 @@ public class Window {
             POITableModel.removeRow(0);
         }
 
-        //add new rows from the special poitns found
+        //add new rows from the special points found
         for(Pair<Double, Double> point : pointDescription.keySet()) {
-            String description = pointDescription.get(point);
+            String description = pointDescription.get(point).toString();
             POITableModel.addRow(new Object[]{point, description});
         }
 

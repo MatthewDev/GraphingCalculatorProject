@@ -1,15 +1,18 @@
 package view;
 
+import org.jfree.util.ShapeUtilities;
 import structure.ComparablePair;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import structure.pointtypes.PointLabel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,20 +29,116 @@ public class GraphRenderer extends XYLineAndShapeRenderer{
         super();
         this.chartPanel = chartPanel;
 
-        this.setBaseShapesVisible(false);
-        this.setBaseItemLabelsVisible(true);
+
+        this.setUseFillPaint(true);
+        //this.setBaseShapesVisible(false);
+        //this.setBaseItemLabelsVisible(true);
     }
 
 
 
-    private Map<ComparablePair<Double, Double>, String> labels = new HashMap<>();
+    private Map<ComparablePair<Double, Double>, PointLabel> specialPoints = new HashMap<>();
 
-    public void addLabel(double x, double y, String label) {
+    public void addSpecialPoint(double x, double y, PointLabel label) {
         ComparablePair<Double, Double> point = new ComparablePair<>(x, y);
-        labels.put(point, label);
+        specialPoints.put(point, label);
 
         XYSeries fx = ((XYSeriesCollection) this.getPlot().getDataset()).getSeries(0);
         fx.addOrUpdate(x, y);
+    }
+    public static final int SHAPE_SIZE = 4;
+    public static final Shape HOLE_SHAPE = createCircle(SHAPE_SIZE),
+            POI_SHAPE = ShapeUtilities.createDiagonalCross(SHAPE_SIZE/2, SHAPE_SIZE/2),
+            MIN_SHAPE = ShapeUtilities.createDownTriangle(SHAPE_SIZE),
+            MAX_SHAPE = ShapeUtilities.createUpTriangle(SHAPE_SIZE),
+            NO_SHAPE = createCircle(0);
+
+    @Override
+    public boolean getItemShapeVisible(int row, int column){
+        XYSeriesCollection dataset = (XYSeriesCollection) this.chartPanel.getChart().getXYPlot().getDataset();
+        double xVal = dataset.getXValue(row, column);
+        double yVal = dataset.getYValue(row, column);
+        ComparablePair<Double, Double> point = new ComparablePair<>(xVal, yVal);
+
+        if(specialPoints.containsKey(point)) return true;
+
+        return false;
+    }
+    @Override
+    public Shape getItemShape(int row, int column) {
+        XYSeriesCollection dataset = (XYSeriesCollection) this.chartPanel.getChart().getXYPlot().getDataset();
+        double xVal = dataset.getXValue(row, column);
+        double yVal = dataset.getYValue(row, column);
+        ComparablePair<Double, Double> point = new ComparablePair<>(xVal, yVal);
+
+        if(!specialPoints.containsKey(point)) return NO_SHAPE;
+
+        switch(specialPoints.get(point)) {
+            case HOLE:
+                return HOLE_SHAPE;
+            case POI:
+                return POI_SHAPE;
+            case MIN :
+                return MIN_SHAPE;
+            case MAX:
+                return MAX_SHAPE;
+        }
+
+        return NO_SHAPE;
+    }
+
+    @Override
+    public boolean getItemShapeFilled(int row, int column) {
+        XYSeriesCollection dataset = (XYSeriesCollection) this.chartPanel.getChart().getXYPlot().getDataset();
+        double xVal = dataset.getXValue(row, column);
+        double yVal = dataset.getYValue(row, column);
+        ComparablePair<Double, Double> point = new ComparablePair<>(xVal, yVal);
+
+        if(!specialPoints.containsKey(point)) return this.getBaseShapesFilled();
+
+        switch(specialPoints.get(point)) {
+            case HOLE:
+                return true;
+        }
+
+        return this.getBaseShapesFilled();
+    }
+
+    public static final Color HOLE_FILL_COLOR = Color.WHITE;
+
+    @Override
+    public Paint getItemFillPaint(int row, int column) {
+        XYSeriesCollection dataset = (XYSeriesCollection) this.chartPanel.getChart().getXYPlot().getDataset();
+        double xVal = dataset.getXValue(row, column);
+        double yVal = dataset.getYValue(row, column);
+        ComparablePair<Double, Double> point = new ComparablePair<>(xVal, yVal);
+
+        Paint normalPaint = this.getSeriesPaint(row);
+
+        if(!specialPoints.containsKey(point)) return normalPaint;
+
+        switch(specialPoints.get(point)) {
+            case MIN:
+                break;
+            case MAX:
+                break;
+            case HOLE:
+                return HOLE_FILL_COLOR;
+            case POI:
+                break;
+            case NONE:
+                break;
+        }
+        return normalPaint;
+    }
+
+
+
+
+
+
+    private static Shape createCircle(float radius) {
+        return new Ellipse2D.Double(-radius, -radius, radius*2, radius*2);
     }
 
     @Override
@@ -48,8 +147,8 @@ public class GraphRenderer extends XYLineAndShapeRenderer{
         double yVal = dataset.getYValue(series, item);
         ComparablePair<Double, Double> point = new ComparablePair<>(xVal, yVal);
 
-        if(labels.containsKey(point)){
-            JTextArea label = createLabel(xVal, yVal, labels.get(point) );
+        if(specialPoints.containsKey(point)){
+            JTextArea label = createLabel(xVal, yVal, specialPoints.get(point).toString() );
             drawJComponent(g2, label, ceil(x), ceil(y) );
         }
 
