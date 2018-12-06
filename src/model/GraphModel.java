@@ -50,7 +50,7 @@ public class GraphModel {
 
     private GraphModel(String expression, String variableName, Pair<Double, Double> domain, Pair<Double, Double> range) {
         this.variableName = variableName;
-        this.ftcModel = new FTCModel(expression, variableName, new Pair<Double, Double>(0d,0d));
+        this.ftcModel = new FTCModel(expression, variableName, new Pair<>(0d, 0d));
 
         setDomain(domain);
         setExpression(expression);
@@ -272,7 +272,7 @@ public class GraphModel {
         ast = new AbstractSyntaxTree(expression, variableName);
         fx = new ASTEvaluator(ast);
 
-        fxOutput = new XYSeries("f(x)", true, false);
+        fxOutput = new XYSeries("f(x)", true, true);
 
         Map<Double, Double> functionTable = fx.eval(domain.a, domain.b);
         Map<Double, Discontinuity> discontinuities = RationalExprUtilities.discontinuities(ast, domain.a, domain.b);

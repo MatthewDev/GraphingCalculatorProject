@@ -11,13 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="29260131-b105-4758-9533-888d997ad1d8" name="Default" comment="fix edge case with duplicate values">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/GraphingCalculator/GraphingCalculator.jar" afterPath="$PROJECT_DIR$/out/artifacts/GraphingCalculator/GraphingCalculator.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/GraphingCalculator/model/GraphModel.class" afterPath="$PROJECT_DIR$/out/production/GraphingCalculator/model/GraphModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
-    <list id="724be330-69a8-452c-96da-c3d83b9f9191" name="Rejected commit: Default" comment="fix edge case with duplicate values">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GraphModel.java" afterPath="$PROJECT_DIR$/src/model/GraphModel.java" />
     </list>
+    <list id="724be330-69a8-452c-96da-c3d83b9f9191" name="Rejected commit: Default" comment="fix edge case with duplicate values" />
     <ignored path="Homework2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -135,9 +132,12 @@
       <file leaf-file-name="GraphModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/GraphModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5475">
-              <caret line="274" column="50" lean-forward="false" selection-start-line="274" selection-start-column="50" selection-end-line="274" selection-end-column="50" />
-              <folding />
+            <state relative-caret-position="275">
+              <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+              <folding>
+                <element signature="e#9300#9301#0" expanded="true" />
+                <element signature="e#9346#9347#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -576,7 +576,7 @@
       <recent name="C:\Users\Matthew\Dropbox\Homework2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="Application.GraphingCalc">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -758,7 +758,7 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="Unnamed" type="Application" factoryName="Application">
+    <configuration default="false" name="GraphingCalc" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="view.Window" />
       <option name="VM_PARAMETERS" value="" />
@@ -774,7 +774,7 @@
       <method />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="0" class="java.lang.String" itemvalue="Application.GraphingCalc" />
     </list>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
@@ -892,23 +892,30 @@
       <option name="project" value="LOCAL" />
       <updated>1544041095717</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix edge case with duplicate values">
+      <created>1544061513471</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1544061513471</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32163742" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32163742" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265074" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3017544" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3017544" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.56004757" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1359,9 +1366,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/GraphModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5475">
-          <caret line="274" column="50" lean-forward="false" selection-start-line="274" selection-start-column="50" selection-end-line="274" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="275">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="e#9300#9301#0" expanded="true" />
+            <element signature="e#9346#9347#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
