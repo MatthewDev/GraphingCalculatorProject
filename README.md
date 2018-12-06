@@ -6,7 +6,7 @@ Graphing calculator built with Java and JFreeChart to display and analyze equati
 ![Example 3](/demo/GC3.PNG)
 
 ## Download
-[Download executable jar here. ](/out/artifacts/GraphingCalculator)
+[Download executable jar here. ](/out/artifacts/GraphingCalculator/GraphingCalculator.jar)
 
 ## Dependencies
 - JFreeChart
